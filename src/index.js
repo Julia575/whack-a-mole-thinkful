@@ -1,9 +1,12 @@
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
-const startButton = document.querySelector('#start');
+const startButton= document.getElementById('start');
+  //document.querySelector('#start');
 // TODO: Add the missing query selectors:
-const score = document.querySelector('#score'); // Use querySelector() to get the score element
-const timerDisplay=  document.querySelector('#timer'); // use querySelector() to get the timer element.
+const score = document.getElementById('score');
+  //querySelector('#score'); // Use querySelector() to get the score element
+const timerDisplay=document.getElementById('timer');
+  //document.querySelector('#timer'); // use querySelector() to get the timer element.
 
 let time = 0;
 let timer;
@@ -71,7 +74,7 @@ function setDelay(difficulty) {
  */
 function chooseHole(holes) {
   // TODO: Write your code here.
-  const holes = document.querySelectorAll('.hole');
+  //const holes = document.querySelectorAll('.hole');
   const index = randomInteger(0,holes.length-1);
   const hole = holes[index];
   if (hole === lastHole) {
@@ -110,7 +113,7 @@ function gameOver() {
     let gameStopped = stopGame();
     return gameStopped;
   }
-  
+
 }
 
 function setDelay(difficulty){
@@ -130,7 +133,7 @@ function showUp() {
  // let delay = 0; // TODO: Update so that it uses setDelay()
   //const hole = 0;  // TODO: Update so that it use chooseHole()
   let delay = setDelay("easy");
-  const hole = chooseHoles(holes);
+  const hole = chooseHole(holes);
   return showAndHide(hole, delay);
 }
 
@@ -146,7 +149,7 @@ function showAndHide(hole, delay){
   // TODO: call the toggleVisibility function so that it adds the 'show' class.
   toggleVisibility(hole);
   const timeoutID = setTimeout(() => {
-    toggleVisibility(cake);
+    toggleVisibility(hole);
     gameOver();
   }, delay);
   return timeoutID;
@@ -208,7 +211,7 @@ function updateTimer() {
     timerDisplay.textContent = time;
   }
   return time;
-  
+
 }
 
 /**
@@ -270,7 +273,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  stopAudio(song);  //optional
+  //stopAudio(song);  //optional
   clearInterval(timer);
   return "game stopped";
 }
@@ -282,13 +285,15 @@ function stopGame(){
 *
 */
 function startGame(){
-   setDuration(10);
+   setDuration(20);
    showUp();
    startTimer();
+   setEventListeners();
+  console.log("whack!")
   return "game started";
 }
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startGame, false);
 
 
 // Please do not modify the code below.
